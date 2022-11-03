@@ -10,7 +10,7 @@ yum_makecache_retry() {
   until [ $tries -ge 5 ]
   do
     yum makecache && break
-    let tries++
+    ((tries++)) || true
     sleep 1
   done
 }
