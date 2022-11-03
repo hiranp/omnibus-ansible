@@ -1,5 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #TODO.md
+
+set -o errexit
+set -o nounset
 
 if [ "$1" = "-v" ]; then
   ANSIBLE_VERSION="${2}"
