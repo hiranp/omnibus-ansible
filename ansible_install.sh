@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 #TODO.md
 
+# Exit on error. Append "|| true" if you expect an error.
 set -o errexit
+# # Do not allow use of undefined vars. Use ${VAR:-} to use an undefined VAR
 set -o nounset
+# Exit on error inside any functions or subshells.
+# set -o errtrace
+
+LATEST_PYTHON=1  # Force to use Python 3.9+
 
 if [ "$1" = "-v" ]; then
   ANSIBLE_VERSION="${2}"
@@ -59,6 +65,8 @@ if [ ! "$(which ansible-playbook)" ]; then
     yum -y install epel-release
     # One more time with EPEL to avoid failures
     yum_makecache_retry
+
+
 
     yum -y install python-pip PyYAML python-jinja2 python-httplib2 python-keyczar python-paramiko git
     # If python-pip install failed and setuptools exists, try that
